@@ -51,7 +51,7 @@ Now, if we set **pages_to_display** to **'all'** or a number greater than the pa
 
 #### Previous and next label
 
-For these options you can pass your own html. Can be useful you want to add an icon instead of text, as below:
+For these options you can pass your own html. Can be useful if you want to add an icon instead of text, as below:
 ```javascript
 $('.sp-pagination').pagination({
   next_label: '<i class="fa fa-chevron-right"></i>',
@@ -66,7 +66,7 @@ The use of ajax is showed below.
 $('.sp-pagination').pagination({
     ajax: {
       url: '/cities', // required
-      table: '.my-table', // required
+      table_selector: '.my-table', // required
       method: 'post', // optional
       loader: false, // optional
       extra_data: false // optional
@@ -76,9 +76,9 @@ $('.sp-pagination').pagination({
 
 #### Options
 - **url**: The url to get the data.
-- **table**: The table where the records will be placed.
+- **table_selector**: The table where the records will be placed.
 - **method**: The method of request, **post** or **get**.
-- **loader**: In some cases the request can take some time, if you want to display a loader while the data is requested, set this to **true** or add your own custom html, as below:
+- **loader**: In some cases the request can take some time, if you want to display a loader while the data are loading, set this to **true** or add your own custom html, as below:
 ```javascript
 $('.sp-pagination').pagination({
     ajax: {
@@ -86,7 +86,7 @@ $('.sp-pagination').pagination({
     }
   })
 ```
-- **extra_data**: If you want to add more data in each row. In this case, you must to pass an array with the extra data, as below:
+- **extra_data**: If you want to add more data in each row. In this case, you must pass an array with the extra data, as below:
 ```javascript
 $('.sp-pagination').pagination({
     ajax: {
