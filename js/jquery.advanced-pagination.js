@@ -191,11 +191,7 @@
 		}
 
 		function getCurrentPageUrl() {
-			if(!settings.override_params) {
-				return window.location.href;
-			} else {
-				return window.location.href.split('?')[0];
-			}
+			return window.location.href;
 		}
 
 		function infoUrlParams() {
