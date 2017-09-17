@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Advanced Pagination Example</title>
 	<link rel="stylesheet" type="text/css" href="css/advanced-pagination.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	
@@ -13,7 +14,9 @@
 	<script src="js/jquery.advanced-pagination.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('.sp-pagination').pagination();
+			$('.sp-pagination').pagination({
+				show_arrows: false
+			});
 		});
 	</script>
 </body>

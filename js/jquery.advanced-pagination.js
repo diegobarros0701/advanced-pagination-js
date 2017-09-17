@@ -2,9 +2,9 @@
 	
 	$.fn.pagination = function(options) {
 		let settings = $.extend({
-			total_of_record: 30,
+			total_of_record: 153,
 			records_per_page: 10,
-			pages_to_display: 4,
+			pages_to_display: 'all',
 			param_name: 'page',
 			position: 'center',
 			ajax: false,
@@ -20,6 +20,7 @@
 				ajax: {
 					url: '/cidades', // required
 					table: '.my-table', // required
+					method: 'post',
 					amount_records: 10, // required
 					loader: `
 						<div class='loader'></div>
@@ -33,12 +34,16 @@
 			*/
 		}, options);
 
+		if(settings.show_arrows) {
+			settings.next_label = '>';
+			settings.previous_label = '<';
+		}
 
 		return this.each(function() {
 			let $this = $(this);
 
 			let total_of_pages = Math.ceil(settings.total_of_record / settings.records_per_page)
-			if(settings.pages_to_display > total_of_pages)
+			if(settings.pages_to_display > total_of_pages || settings.pages_to_display === 'all')
 				settings.pages_to_display = total_of_pages;
 
 			getPaginationList($this, total_of_pages, getCurrentPageNumber());
@@ -85,10 +90,62 @@
 			let body_ul_pagination = $(`<ul class='${settings.list_class}' style='text-align: ${settings.position}'></ul>`);
 			let has_more_than_one_page = total_of_pages > 1;
 
-			for(let i = 0; i <= settings.pages_to_display + 1; i++) {
+
+			let middle_of_list = Math.ceil(settings.pages_to_display / 2) + 1;
+
+			let start_page = 0;
+			let end_page = settings.pages_to_display;
+
+			if(active_page >= middle_of_list && settings.pages_to_display !== total_of_pages) {
+				console.log(active_page);
+				if(((total_of_pages - active_page) - Math.floor(settings.pages_to_display / 2)) <= 0) {
+					start_page = total_of_pages - Math.ceil(settings.pages_to_display / 2) - middle_of_list;
+					end_page = total_of_pages;
+
+					if(settings.pages_to_display % 2 !== 0)
+						start_page += 1;
+				} else {
+					start_page = active_page - Math.ceil(settings.pages_to_display / 2);
+					if(settings.pages_to_display % 2 === 0)
+						start_page -= 1;
+
+					end_page = start_page + settings.pages_to_display;
+				}
+
+			// console.log(start_page);
+			// console.log(end_page);
+			}
+
+
+			
+
+			// display = 7
+			// current = 2
+			// 1 2 3 4 5 6
+			// 7 / 2 = 4
+			// 6 / 2 = 3
+			// 7 / 2 = 4 - 4 = 0
+			// 7 / 2 = 4 - 5 = 1
+			// 7 / 2 = 4 - 6 = 2
+
+			for(let i = start_page; i <= end_page + 1; i++) {
 
 				if(has_more_than_one_page) {
-					if(i === 0) {
+					console.log(start_page);
+					if((start_page + 1) > 1 && (start_page + 1) === i) {
+						body_ul_pagination.append(getPaginationItem({
+							label: 1,
+							page: 1
+						}));
+
+						body_ul_pagination.append(getPaginationItem({
+							label: '...',
+							class: 'disabled'
+						}));
+
+					}
+
+					if(i === start_page) {
 						let there_is_no_back = false;
 						if (active_page === 1) 
 							there_is_no_back = true;
@@ -99,10 +156,25 @@
 							class: there_is_no_back === true ? ' disabled' : 'prev'
 						}));
 
-					} else if(i === (settings.pages_to_display + 1)) {
+					} else if(i === (end_page + 1)) {
 						let there_is_no_front = false;
-						if (active_page === settings.pages_to_display) 
+						if (active_page === total_of_pages)  
 							there_is_no_front = true;
+
+						if((total_of_pages - end_page) > 1) {
+							body_ul_pagination.append(getPaginationItem({
+								label: '...',
+								class: 'disabled'
+							}));
+						}
+
+						if((total_of_pages - end_page) >= 1) {
+							body_ul_pagination.append(getPaginationItem({
+								label: total_of_pages,
+								page: total_of_pages,
+								class: i === active_page ? 'active' : ''
+							}));
+						}
 
 						body_ul_pagination.append(getPaginationItem({
 							label: settings.next_label,
@@ -119,7 +191,7 @@
 					}
 				} else {
 
-					if(i !== 0 && i !== (total_of_pages + 1)) {
+					if(i !== 0 && i !== (end_page + 1)) {
 						body_ul_pagination.append(getPaginationItem({
 							label: i,
 							page: i,
@@ -130,6 +202,8 @@
 				}
 
 			}
+
+			
 
 			element_list.html(body_ul_pagination);
 		}
