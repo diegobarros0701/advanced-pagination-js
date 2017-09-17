@@ -22,7 +22,7 @@ ajax: false // optional
 show_arrows: false // optional
 previous_label: 'Previous' // optional
 next_label: 'Next' // optional
-list_class: 'sp-pagination-wrapper' // optional
+list_class: 'sp-pagination' // optional
 ```
 You don't need to override any of these options to use the plugin, but if you don't specify the right settings the plugin may doesn't work as expected.  
 The options commented with 'attention' are those which you maybe need to set if the plugin isn't working properly.
