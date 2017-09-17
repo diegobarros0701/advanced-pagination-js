@@ -115,6 +115,19 @@
 
 			for(let i = start_page; i <= end_page + 1; i++) {
 
+				if(i === start_page) {
+					let there_is_no_back = false;
+					if (active_page === 1) 
+						there_is_no_back = true;
+
+					body_ul_pagination.append(getPaginationItem({
+						label: settings.previous_label,
+						page: active_page - 1,
+						class: there_is_no_back === true ? ' disabled' : 'prev'
+					}));
+
+				}
+
 				if(has_more_than_one_page) {
 					if((start_page + 1) > 1 && (start_page + 1) === i) {
 						body_ul_pagination.append(getPaginationItem({
@@ -129,21 +142,7 @@
 
 					}
 
-					if(i === start_page) {
-						let there_is_no_back = false;
-						if (active_page === 1) 
-							there_is_no_back = true;
-
-						body_ul_pagination.append(getPaginationItem({
-							label: settings.previous_label,
-							page: active_page - 1,
-							class: there_is_no_back === true ? ' disabled' : 'prev'
-						}));
-
-					} else if(i === (end_page + 1)) {
-						let there_is_no_front = false;
-						if (active_page === total_of_pages)  
-							there_is_no_front = true;
+					if(i === (end_page + 1)) {
 
 						if((total_of_pages - end_page) > 1) {
 							body_ul_pagination.append(getPaginationItem({
@@ -160,13 +159,7 @@
 							}));
 						}
 
-						body_ul_pagination.append(getPaginationItem({
-							label: settings.next_label,
-							page: active_page + 1,
-							class: there_is_no_front === true ? ' disabled' : 'next'
-						}));
-
-					} else {
+					} else if(i !== start_page) {
 						body_ul_pagination.append(getPaginationItem({
 							label: i,
 							page: i,
@@ -183,6 +176,18 @@
 						}));
 					}
 
+				}
+
+				if(i === (end_page + 1)) {
+					let there_is_no_front = false;
+					if (active_page === total_of_pages)  
+						there_is_no_front = true;
+
+					body_ul_pagination.append(getPaginationItem({
+						label: settings.next_label,
+						page: active_page + 1,
+						class: there_is_no_front === true ? ' disabled' : 'next'
+					}));
 				}
 
 			}
