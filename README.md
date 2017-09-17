@@ -23,7 +23,7 @@ show_arrows: false // optional
 show_info: true // optional
 previous_label: 'Previous' // optional
 next_label: 'Next' // optional
-total_of_records_label: 'Total of records: ',
+total_of_records_label: 'Total of records: ', // optional
 css_classes: { // optional
   div: 'sp-pagination',
   list: 'sp-pagination-wrapper',
@@ -53,7 +53,7 @@ Now, if we set **pages_to_display** to **'all'** or a number greater than the pa
 
 #### Position
 
-![Pagination example: position](https://i.imgur.com/62y4tTa.png)  
+![Pagination example: position](https://i.imgur.com/dn3gWxl.png)  
 Note that if you set to display the records info, this will be placed in the same position of pagination itself.  
 The position of info will be changed in the future and will be more flexible.
 
