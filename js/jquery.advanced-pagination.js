@@ -97,7 +97,6 @@
 			let end_page = settings.pages_to_display;
 
 			if(active_page >= middle_of_list && settings.pages_to_display !== total_of_pages) {
-				console.log(active_page);
 				if(((total_of_pages - active_page) - Math.floor(settings.pages_to_display / 2)) <= 0) {
 					start_page = total_of_pages - Math.ceil(settings.pages_to_display / 2) - middle_of_list;
 					end_page = total_of_pages;
@@ -117,7 +116,6 @@
 			for(let i = start_page; i <= end_page + 1; i++) {
 
 				if(has_more_than_one_page) {
-					console.log(start_page);
 					if((start_page + 1) > 1 && (start_page + 1) === i) {
 						body_ul_pagination.append(getPaginationItem({
 							label: 1,
@@ -193,12 +191,72 @@
 		}
 
 		function getCurrentPageUrl() {
-			return window.location.href.split('?')[0];
+			if(!settings.override_params) {
+				return window.location.href;
+			} else {
+				return window.location.href.split('?')[0];
+			}
+		}
+
+		function infoUrlParams() {
+			info_params = {
+				has_page_param: false,
+				has_more_params: false,
+				params: []
+			}
+
+			let url_split = window.location.href.split('?');
+			if (url_split.length > 1) {
+				params = url_split[1].split(/[&=]/);
+				info_params.params = params;
+
+				for(let i = 0; i < params.length; i+=2) {
+					if(params.length === 2) {
+						if(params[i] === settings.param_name) {
+							info_params.has_page_param = true;
+						} else {
+							info_params.has_more_params = true;
+						}
+					} else if (params.length > 2) {
+						if(params[i] === settings.param_name) {
+							info_params.has_page_param = true;
+						}
+						info_params.has_more_params = true;
+					}
+					
+				}
+			}
+
+			return info_params;
+		}
+
+		function getUrlPaginationLink(page) {
+			let info_params = infoUrlParams();
+			let url = getCurrentPageUrl();
+
+			if(!info_params.has_page_param) {
+				let delimiter = '?';
+				if(info_params.has_more_params)
+					delimiter = '&';
+
+				url = `${url}${delimiter}${settings.param_name}=${page}`;
+
+			} else {
+				for(let i = 0; i < info_params.params.length; i+=2) {
+					if(info_params.params[i] === settings.param_name) {
+						url = url.replace(`${settings.param_name}=${info_params.params[i+1]}`, `${settings.param_name}=${page}`);
+					}
+				}
+			}
+
+			return url;
 		}
 
 		function getPaginationItem(options) {
+			let url = getUrlPaginationLink(options.page);
+
 			options.class = typeof options.class === 'undefined' ? '' : options.class;
-			options.page = typeof options.page === 'undefined' ? '' : `${getCurrentPageUrl()}?${settings.param_name}=${options.page}`;
+			options.page = typeof options.page === 'undefined' ? '' : url;
 
 			return `
 				<li class='item ${options.class}'>
