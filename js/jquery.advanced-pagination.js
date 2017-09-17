@@ -2,7 +2,7 @@
 	
 	$.fn.pagination = function(options) {
 		let settings = $.extend({
-			total_of_records: 60,
+			total_of_records: 0,
 			records_per_page: 10,
 			pages_to_display: 'all',
 			param_name: 'page',
@@ -41,6 +41,9 @@
 
 		return this.each(function() {
 			let $this = $(this);
+
+			if(settings.total_of_records === null ||  settings.total_of_records === 0 || settings.total_of_records.trim() === '')
+				settings.total_of_records = 1;
 
 			let total_of_pages = Math.ceil(settings.total_of_records / settings.records_per_page)
 			if(settings.pages_to_display > total_of_pages || settings.pages_to_display === 'all')
