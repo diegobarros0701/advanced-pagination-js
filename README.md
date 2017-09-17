@@ -20,9 +20,15 @@ param_name: 'page' // optional
 position: 'center' // optional
 ajax: false // optional
 show_arrows: false // optional
+show_info: true // optional
 previous_label: 'Previous' // optional
 next_label: 'Next' // optional
-list_class: 'sp-pagination' // optional
+total_of_records_label: 'Total of records: ',
+css_classes: { // optional
+  div: 'sp-pagination',
+  list: 'sp-pagination-wrapper',
+  records_info: 'records-info'
+},
 ```
 You don't need to override any of these options to use the plugin, but if you don't specify the right settings the plugin may doesn't work as expected.  
 The options commented with 'attention' are those which you maybe need to set if the plugin isn't working properly.
@@ -47,7 +53,9 @@ Now, if we set **pages_to_display** to **'all'** or a number greater than the pa
 
 #### Position
 
-![Pagination example: position](https://i.imgur.com/xQj4iHB.png)
+![Pagination example: position](https://i.imgur.com/62y4tTa.png)  
+Note that if you set to display the records info, this will be placed in the same position of pagination itself.  
+The position of info will be changed in the future and will be more flexible.
 
 #### Previous and next label
 
@@ -58,6 +66,18 @@ $('.sp-pagination').pagination({
   previous_label: '<i class="fa fa-chevron-left"></i>'
 })
 ```
+
+#### CSS Classes
+
+After generate the pagination the structure will be:
+```html
+<div class='sp-pagination'>
+  <ul class='sp-pagination-wrapper'>
+  <div class='records-info'></div>
+</div>
+```
+With the **css_classes** option you can change that.  
+For now, you can set only classes, if needed this may be changed in the future to permit add both **id** and **classes**.
 
 ## Ajax (not implemented yet)
 
