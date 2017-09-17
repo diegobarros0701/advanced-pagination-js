@@ -1,13 +1,13 @@
-.sp-pagination {
+.sp-pagination .sp-pagination-wrapper {
 	padding: 0;
 }
 
-.sp-pagination > li {
+.sp-pagination .sp-pagination-wrapper > li {
 	display: inline-block;
     margin-right: -5px;
 }
 
-.sp-pagination > li a {
+.sp-pagination .sp-pagination-wrapper > li a {
 	display: block;
     padding: 6px 11px;
 	text-decoration: none;
@@ -17,37 +17,37 @@
     font-size: 15px;
 }
 
-.sp-pagination > li:first-child a {
+.sp-pagination .sp-pagination-wrapper > li:first-child a {
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 }
 
-.sp-pagination > li:last-child a {
+.sp-pagination .sp-pagination-wrapper > li:last-child a {
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
 }
 
-.sp-pagination > li,
-.sp-pagination > li a {
+.sp-pagination .sp-pagination-wrapper > li,
+.sp-pagination .sp-pagination-wrapper > li a {
 	outline: none;
 }
 
-.sp-pagination > li a:hover,
-.sp-pagination > li a:focus {
+.sp-pagination .sp-pagination-wrapper > li a:hover,
+.sp-pagination .sp-pagination-wrapper > li a:focus {
 	background-color: #eceaea;
 	border-color: #dddddd;
 }
 
-.sp-pagination > li.active a {
+.sp-pagination .sp-pagination-wrapper > li.active a {
 	background-color: #367ada;
 }
 
-.sp-pagination > li.active a {
+.sp-pagination .sp-pagination-wrapper > li.active a {
 	color: white;
 	border-color: #367ada;
 }
 
-.sp-pagination > li.disabled a {
+.sp-pagination .sp-pagination-wrapper > li.disabled a {
 	color: #dddddd;
 	cursor: default;
 	pointer-events: none;

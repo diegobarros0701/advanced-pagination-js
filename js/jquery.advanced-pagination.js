@@ -2,16 +2,22 @@
 	
 	$.fn.pagination = function(options) {
 		let settings = $.extend({
-			total_of_records: 0,
+			total_of_records: 60,
 			records_per_page: 10,
 			pages_to_display: 'all',
 			param_name: 'page',
 			position: 'center',
 			ajax: false,
 			show_arrows: false,
+			show_info: true,
 			previous_label: 'Previous',
 			next_label: 'Next',
-			list_class: 'sp-pagination'
+			total_of_records_label: 'Total of records: ',
+			css_classes: {
+				div: 'sp-pagination',
+				list: 'sp-pagination-wrapper',
+				records_info: 'records-info'
+			},
 			// add_more_params: false //if true, follow this example: add_more_params: '&param1=value&param2=value2'
 			// total_record and records_per_page is needed to discover amount of pages
 			/*
@@ -39,11 +45,16 @@
 			settings.previous_label = '<';
 		}
 
+		var records_info = 0;
+
 		return this.each(function() {
 			let $this = $(this);
 
-			if(settings.total_of_records === null ||  settings.total_of_records === 0 || settings.total_of_records.trim() === '')
+			if(settings.total_of_records === null ||  settings.total_of_records === 0 || isNaN(parseInt(settings.total_of_records))) {
 				settings.total_of_records = 1;
+			} else {
+				records_info = settings.total_of_records;
+			}
 
 			let total_of_pages = Math.ceil(settings.total_of_records / settings.records_per_page)
 			if(settings.pages_to_display > total_of_pages || settings.pages_to_display === 'all')
@@ -90,7 +101,7 @@
 		}
 
 		function getPaginationList(element_list, total_of_pages, active_page = 1) {
-			let body_ul_pagination = $(`<ul class='${settings.list_class}' style='text-align: ${settings.position}'></ul>`);
+			let body_ul_pagination = $(`<ul class='${settings.css_classes.list}' style='text-align: ${settings.position}'></ul>`);
 			let has_more_than_one_page = total_of_pages > 1;
 
 
@@ -194,8 +205,16 @@
 				}
 
 			}
+			let div_pagination = $(`<div class='${settings.css_classes.div}'></div>`);
+			div_pagination.append(body_ul_pagination);
 
-			element_list.html(body_ul_pagination);
+			if(settings.show_info) {
+				div_pagination.append(`
+					<div class='${settings.css_classes.records_info}' style='text-align: ${settings.position}'>${settings.total_of_records_label}${records_info}</div>
+				`);
+			}
+
+			element_list.html(div_pagination);
 		}
 
 		function getCurrentPageUrl() {
