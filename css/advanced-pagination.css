@@ -1,0 +1,54 @@
+.sp-pagination .sp-pagination-wrapper {
+	padding: 0;
+}
+
+.sp-pagination .sp-pagination-wrapper > li {
+	display: inline-block;
+    margin-right: -5px;
+}
+
+.sp-pagination .sp-pagination-wrapper > li a {
+	display: block;
+    padding: 6px 11px;
+	text-decoration: none;
+	color: #007bff;
+    border: 1px solid #dddddd;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+}
+
+.sp-pagination .sp-pagination-wrapper > li:first-child a {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.sp-pagination .sp-pagination-wrapper > li:last-child a {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.sp-pagination .sp-pagination-wrapper > li,
+.sp-pagination .sp-pagination-wrapper > li a {
+	outline: none;
+}
+
+.sp-pagination .sp-pagination-wrapper > li a:hover,
+.sp-pagination .sp-pagination-wrapper > li a:focus {
+	background-color: #eceaea;
+	border-color: #dddddd;
+}
+
+.sp-pagination .sp-pagination-wrapper > li.active a {
+	background-color: #367ada;
+}
+
+.sp-pagination .sp-pagination-wrapper > li.active a {
+	color: white;
+	border-color: #367ada;
+}
+
+.sp-pagination .sp-pagination-wrapper > li.disabled a {
+	color: #dddddd;
+	cursor: default;
+	pointer-events: none;
+}
