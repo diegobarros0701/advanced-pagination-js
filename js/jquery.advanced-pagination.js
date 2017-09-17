@@ -2,7 +2,7 @@
 	
 	$.fn.pagination = function(options) {
 		let settings = $.extend({
-			total_of_record: 153,
+			total_of_records: 60,
 			records_per_page: 10,
 			pages_to_display: 'all',
 			param_name: 'page',
@@ -11,7 +11,7 @@
 			show_arrows: false,
 			previous_label: 'Previous',
 			next_label: 'Next',
-			list_class: 'sp-pagination-wrapper'
+			list_class: 'sp-pagination'
 			// add_more_params: false //if true, follow this example: add_more_params: '&param1=value&param2=value2'
 			// total_record and records_per_page is needed to discover amount of pages
 			/*
@@ -42,7 +42,7 @@
 		return this.each(function() {
 			let $this = $(this);
 
-			let total_of_pages = Math.ceil(settings.total_of_record / settings.records_per_page)
+			let total_of_pages = Math.ceil(settings.total_of_records / settings.records_per_page)
 			if(settings.pages_to_display > total_of_pages || settings.pages_to_display === 'all')
 				settings.pages_to_display = total_of_pages;
 
@@ -112,21 +112,7 @@
 					end_page = start_page + settings.pages_to_display;
 				}
 
-			// console.log(start_page);
-			// console.log(end_page);
 			}
-
-
-			
-
-			// display = 7
-			// current = 2
-			// 1 2 3 4 5 6
-			// 7 / 2 = 4
-			// 6 / 2 = 3
-			// 7 / 2 = 4 - 4 = 0
-			// 7 / 2 = 4 - 5 = 1
-			// 7 / 2 = 4 - 6 = 2
 
 			for(let i = start_page; i <= end_page + 1; i++) {
 
@@ -202,8 +188,6 @@
 				}
 
 			}
-
-			
 
 			element_list.html(body_ul_pagination);
 		}

@@ -8,14 +8,24 @@
 </head>
 <body>
 	
-	<div class="sp-pagination"></div>
+	<div class="pagination-left"></div>
+	<div class="pagination-center"></div>
+	<div class="pagination-right"></div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src="js/jquery.advanced-pagination.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('.sp-pagination').pagination({
-				show_arrows: false
+			$('.pagination-left').pagination({
+				position: 'left'				
+			});
+
+			$('.pagination-center').pagination({
+				position: 'center'				
+			});
+
+			$('.pagination-right').pagination({
+				position: 'right'				
 			});
 		});
 	</script>
