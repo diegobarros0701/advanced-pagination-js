@@ -11,9 +11,10 @@ total_of_record: 30 // required
 records_per_page: 10 // required
 pages_to_display: 4 // required
 param_name: 'page' // required
+position: 'center' // optional
 ajax: false // optional
-showArrows: false // optional
-previousLabel: 'Previous' // optional
-nextLabel: 'Next' // optional
+showrrows: false // optional
+previous_label: 'Previous' // optional
+next_label: 'Next' // optional
 list_class: 'sp-pagination-wrapper' // optional
 ```

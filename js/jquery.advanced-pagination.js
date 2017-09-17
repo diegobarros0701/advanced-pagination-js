@@ -2,15 +2,16 @@
 	
 	$.fn.pagination = function(options) {
 		let settings = $.extend({
-			ajax: false,
-			showArrows: false,
 			total_of_record: 30,
 			records_per_page: 10,
-			previousLabel: 'Anterior',
-			nextLabel: 'Próximo',
-			list_class: 'sp-pagination-wrapper',
-			param_name: 'page',
 			pages_to_display: 4,
+			param_name: 'page',
+			position: 'center',
+			ajax: false,
+			show_arrows: false,
+			previous_label: 'Previous',
+			next_label: 'Next',
+			list_class: 'sp-pagination-wrapper'
 			// add_more_params: false //if true, follow this example: add_more_params: '&param1=value&param2=value2'
 			// total_record and records_per_page is needed to discover amount of pages
 			/*
@@ -81,7 +82,7 @@
 		}
 
 		function getPaginationList(element_list, total_of_pages, active_page = 1) {
-			let body_ul_pagination = $(`<ul class='${settings.list_class}'></ul>`);
+			let body_ul_pagination = $(`<ul class='${settings.list_class}' style='text-align: ${settings.position}'></ul>`);
 			let has_more_than_one_page = total_of_pages > 1;
 
 			for(let i = 0; i <= settings.pages_to_display + 1; i++) {
@@ -93,7 +94,7 @@
 							there_is_no_back = true;
 
 						body_ul_pagination.append(getPaginationItem({
-							label: settings.previousLabel,
+							label: settings.previous_label,
 							page: active_page - 1,
 							class: there_is_no_back === true ? ' disabled' : 'prev'
 						}));
@@ -104,7 +105,7 @@
 							there_is_no_front = true;
 
 						body_ul_pagination.append(getPaginationItem({
-							label: settings.nextLabel,
+							label: settings.next_label,
 							page: active_page + 1,
 							class: there_is_no_front === true ? ' disabled' : 'next'
 						}));
