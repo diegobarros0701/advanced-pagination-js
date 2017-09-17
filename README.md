@@ -1,17 +1,22 @@
-## Usage
+## Basic usage
 ```javascript
-$('.sp-pagination').pagination()
+$('.sp-pagination').pagination({
+  total_of_records: 60
+  records_per_page: 10
+})
 ```
+The above example will result:  
+![Pagination example 2 pages to display](https://i.imgur.com/t8sIABv.png)  
 
 ## Configurations
 
 Below is the list of available options, with them default values.
 
 ```javascript
-total_of_record: 30 // attention
+total_of_records: 60 // attention
 records_per_page: 10 // attention
-pages_to_display: 4 // attention
-param_name: 'page' // attention
+pages_to_display: 'all' // optional
+param_name: 'page' // optional
 position: 'center' // optional
 ajax: false // optional
 show_arrows: false // optional
@@ -22,17 +27,39 @@ list_class: 'sp-pagination-wrapper' // optional
 You don't need to override any of these options to use the plugin, but if you don't specify the right settings the plugin may doesn't work as expected.  
 The options commented with 'attention' are those which you maybe need to set if the plugin isn't working properly.
 
+#### Pages to display
+
+Is the amount of pages that will be displayed, this is useful if you don't wanna show all pages at once.  
+Can be **'all'** or the amount of pages to be displayed. The default value is **'all'**.
+If we use the below example
+```javascript
+$('.sp-pagination').pagination({
+  total_of_records: 60 
+  records_per_page: 10 
+  pages_to_display: 4 
+});
+```
+The result will be:  
+![Pagination example 1: pages to display](https://i.imgur.com/px3rUMh.png)  
+  
+Now, if we set **pages_to_display** to **'all'** or a number greater than the pages that can be displayed (in this case, six) we will see:  
+![Pagination example 2: pages to display](https://i.imgur.com/t8sIABv.png)  
+
+#### Position
+
+![Pagination example: position](https://i.imgur.com/xQj4iHB.png)
+
 #### Previous and next label
 
 For these options you can pass your own html. Can be useful you want to add an icon instead of text, as below:
 ```javascript
-  $('.sp-pagination').pagination({
-    next_label: '<i class="fa fa-chevron-right"></i>',
-    previous_label: '<i class="fa fa-chevron-left"></i>'
-  })
+$('.sp-pagination').pagination({
+  next_label: '<i class="fa fa-chevron-right"></i>',
+  previous_label: '<i class="fa fa-chevron-left"></i>'
+})
 ```
 
-## Ajax
+## Ajax (not implemented yet)
 
 The use of ajax is showed below.
 ```javascript
