@@ -30,7 +30,7 @@ The options commented with 'attention' are those which you maybe need to set if 
 #### Pages to display
 
 Is the amount of pages that will be displayed, this is useful if you don't wanna show all pages at once.  
-Can be **'all'** or the amount of pages to be displayed. The default value is **'all'**.
+Can be **'all'** or the amount of pages to be displayed. The default value is **'all'**.  
 If we use the below example
 ```javascript
 $('.sp-pagination').pagination({
