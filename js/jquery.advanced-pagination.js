@@ -198,7 +198,7 @@
 
 		function getPaginationItem(options) {
 			options.class = typeof options.class === 'undefined' ? '' : options.class;
-			options.page = typeof options.page === 'undefined' ? '' : `${getCurrentPageUrl()}?page=${options.page}`;
+			options.page = typeof options.page === 'undefined' ? '' : `${getCurrentPageUrl()}?${settings.param_name}=${options.page}`;
 
 			return `
 				<li class='item ${options.class}'>
