@@ -36,7 +36,7 @@ For these options you can pass your own html. Can be useful you want to add an i
 
 The use of ajax is showed below.
 ```javascript
-$('.sp-pagionation').pagination({
+$('.sp-pagination').pagination({
     ajax: {
       url: '/cities', // required
       table: '.my-table', // required
@@ -53,7 +53,7 @@ $('.sp-pagionation').pagination({
 - **method**: The method of request, **post** or **get**.
 - **loader**: In some cases the request can take some time, if you want to display a loader while the data is requested, set this to **true** or add your own custom html, as below:
 ```javascript
-$('.sp-pagionation').pagination({
+$('.sp-pagination').pagination({
     ajax: {
       loader: '<div class='loader'></div>'
     }
@@ -61,7 +61,7 @@ $('.sp-pagionation').pagination({
 ```
 - **extra_data**: If you want to add more data in each row. In this case, you must to pass an array with the extra data, as below:
 ```javascript
-$('.sp-pagionation').pagination({
+$('.sp-pagination').pagination({
     ajax: {
       extra_data: [
         '<td>Data 1</td>'
